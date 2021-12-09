@@ -1,0 +1,15 @@
+{
+  "name": "virtual-pet",
+  "version": "1.0.0",
+  "description": "creating a virtual pet as per the Manchester Codes course",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^27.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
