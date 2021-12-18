@@ -54,7 +54,7 @@ describe('constructor', () => {
   })
 
   describe('walk', () => {
-    it('increases fitness by 4', () =>{
+    it('increases fitness by 4 when walk is called', () =>{
       const pet = new Pet('Fido');
       pet.fitness = 4;
       pet.walk();
@@ -66,4 +66,19 @@ describe('constructor', () => {
       pet.walk();
       expect(pet.fitness).toEqual(10);
     })
+  })
+
+  describe('feed', () => {
+    it('decreases hunger by 3 when feed is called', () => {
+      const pet = new Pet('Fido');
+      pet.hunger = 5;
+      pet.feed();
+      expect(pet.hunger).toEqual(2);
+    });
+    it('decreases hunger, but not to below 0, when feed is called', () => {
+      const pet = new Pet('Fido');
+      pet.hunger = 2;
+      pet.feed();
+      expect(pet.hunger).toEqual(0);
+    });
   })
