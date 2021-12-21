@@ -23,6 +23,10 @@ describe('constructor', () => {
     it('has no initial mood', () => {
       const pet = new Pet('Fido');
       expect(pet.mood).toBe('');
+    });
+    it('is initially alive', () =>{
+      const pet = new Pet('Fido');
+      expect(pet.isAlive).toBe(true);
     })
   });
   
@@ -115,3 +119,34 @@ describe('constructor', () => {
       expect(pet.mood).toBe('I feel great!');
     })
   });
+  
+  describe('deathConditions', () =>{
+    it('pet is dead if fitness is 0 or less', () =>{
+      const pet = new Pet('Fido');
+      pet.fitness = 0;
+      expect(pet.isAlive).toBe(false);
+    });
+    it('pet is dead if hunger is 10 or more', () =>{
+      const pet = new Pet('Fido');
+      pet.hunger = 10;
+      expect(pet.isAlive).toBe(false);
+    });
+    it('pet is dead on the age of 30', () =>{
+      const pet = new Pet('Fido');
+      pet.age = 30;
+      expect(pet.isAlive).toBe(false);
+    });
+    it('pet is still alive if no death conditions are met', () =>{
+      const pet = new Pet('Fido');
+      pet.age = 0;
+      pet.fitness = 10;
+      pet.hunger = 0;
+      expect(pet.isAlive).toBe(true);
+    })
+  })
+
+  describe('checkUp() should, if the pet is dead, tell us exactly that', () =>{
+    const pet = new Pet('Fido');
+    pet.isAlive() = false;
+    expect(pet.mood).toBe('Your pet is no longer alive :(');
+  })
