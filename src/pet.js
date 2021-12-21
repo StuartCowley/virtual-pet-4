@@ -8,7 +8,6 @@ function Pet(name){
     this.age = 0;
     this.hunger = 0;
     this.fitness = 10;
-    this.mood = '';
     Pet.prototype = {
         get isAlive() {
             return this.age < 30 && this.hunger < 10 && this.fitness > 0;
@@ -35,13 +34,13 @@ function Pet(name){
     };
     this.checkUp = function(){
         if ((this.fitness <= FITNESS_THRESHOLD) && (this.hunger >= HUNGER_THRESHOLD)){
-            this.mood = 'I am hungry AND I need a walk'; 
+            return 'I am hungry AND I need a walk'; 
         } else if (this.hunger >= HUNGER_THRESHOLD) {
-            this.mood = 'I am hungry';
+            return 'I am hungry';
         } else if (this.fitness <= FITNESS_THRESHOLD) {
-            this.mood = 'I need a walk';
+            return 'I need a walk';
         } else {
-            this.mood = 'I feel great!';
+            return 'I feel great!';
         }
     };
 }

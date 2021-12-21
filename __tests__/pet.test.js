@@ -20,10 +20,6 @@ describe('constructor', () => {
       const pet = new Pet('Fido');
       expect(pet.fitness).toEqual(10);
     });
-    it('has no initial mood', () => {
-      const pet = new Pet('Fido');
-      expect(pet.mood).toBe('');
-    });
     it('is initially alive', () =>{
       const pet = new Pet('Fido');
       expect(pet.isAlive).toBe(true);
@@ -95,28 +91,24 @@ describe('constructor', () => {
     it('pet asks for a walk if unfit', () =>{
       const pet = new Pet('Fido');
       pet.fitness = 1;
-      pet.checkUp();
-      expect(pet.mood).toBe('I need a walk');
+      expect(pet.checkUp()).toBe('I need a walk');
     });
     it('pet asks for food if hungry', () =>{
       const pet = new Pet('Fido');
       pet.hunger = 6;
-      pet.checkUp();
-      expect(pet.mood).toBe('I am hungry');
+      expect(pet.checkUp()).toBe('I am hungry');
     });
     it('pet asks for food and a walk if both unfit and hungry', () =>{
       const pet = new Pet('Fido');
       pet.fitness = 1;
       pet.hunger = 6;
-      pet.checkUp();
-      expect(pet.mood).toBe('I am hungry AND I need a walk');
+      expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
     });
     it('pet declares it is happy if both fed and fit', () =>{
       const pet = new Pet('Fido');
       pet.fitness = 4;
       pet.hunger = 4;
-      pet.checkUp();
-      expect(pet.mood).toBe('I feel great!');
+      expect(pet.checkUp()).toBe('I feel great!');
     })
   });
   
@@ -145,8 +137,10 @@ describe('constructor', () => {
     })
   })
 
-  describe('checkUp() should, if the pet is dead, tell us exactly that', () =>{
+describe('deadPet', () => {
+  it('checkUp() function alerts us that the pet is dead', ()=> {
     const pet = new Pet('Fido');
-    pet.isAlive() = false;
-    expect(pet.mood).toBe('Your pet is no longer alive :(');
-  })
+    pet.isAlive === false;
+    expect(pet.checkUp()).toBe('Your pet is no longer alive :(');
+  });
+})
