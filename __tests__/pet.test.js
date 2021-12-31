@@ -20,6 +20,10 @@ describe('constructor', () => {
       const pet = new Pet('Fido');
       expect(pet.fitness).toEqual(10);
     });
+    it('has no children initially', () => {
+      const pet = new Pet('Fido');
+      expect(pet.children).toEqual([]);
+    })
     it('is initially alive', () =>{
       const pet = new Pet('Fido');
       expect(pet.isAlive).toBe(true);
@@ -160,4 +164,40 @@ describe('deadPet', () => {
     const pet = new Pet('Fido');
     expect(pet.checkUp()).toBe('I feel great!');
   });
+});
+
+describe('adoptedChild', () => {
+  it('Amelia has an adopted child named River', () =>{
+    const parent = new Pet('Amelia');
+    const child = new Pet('River');
+    parent.adoptChild(child);
+    expect(parent.name).toBe('Amelia');
+    expect(child.name).toBe('River');
+    expect(parent.children[0].name).toBe('River');
+  });
+  it('an error is thrown if Amelia, the parent, is dead', () =>{
+    const parent = new Pet('Amelia');
+    const child = new Pet('River');
+    parent.age = 30;
+    expect(() => parent.adoptChild(child)).toThrow('Your pet is no longer alive :(');
+  });
+  it('an error is thrown if River, the child, is dead prior to adoption', () => {
+    const parent = new Pet('Amelia');
+    const child = new Pet('River');
+    child.age = 30;
+    expect(() => parent.adoptChild(child)).toThrow('Your pets child is no longer alive :(');
+  })
+});
+
+describe('biologicalChild', () =>{
+  it('Amelia has a biological child named River', () => {
+    const parent = new Pet('Amelia');
+    parent.haveBaby('River');
+    expect(parent.children[0].name).toBe('River');
+  });
+  it('an error should be thrown if Amelia, the parent, is dead', () =>{
+    const parent = new Pet('Amelia');
+    parent.age = 30;
+    expect(() => parent.haveBaby('River')).toThrow('Your pet is no longer alive :(');
+  })
 });

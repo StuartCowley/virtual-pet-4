@@ -11,9 +11,10 @@ function Pet(name){
     this.age = 0;
     this.hunger = 0;
     this.fitness = 10;
+    this.children = [];
     Pet.prototype = {
         get isAlive() {
-            return this.age < AGE_LIMIT && this.hunger < HUNGER_LIMIT && this.fitness > FITNESS_LIMIT;
+            return (this.age < AGE_LIMIT) && (this.hunger < HUNGER_LIMIT) && (this.fitness > FITNESS_LIMIT);
         }
     };
     this.growUp = function(){
@@ -57,6 +58,21 @@ function Pet(name){
             return 'I feel great!';
         }
     };
+    this.adoptChild = function(child){
+        if (!this.isAlive){
+            throw new Error('Your pet is no longer alive :(')
+        }
+        if (!child.isAlive){
+            throw new Error('Your pets child is no longer alive :(')
+        }
+        this.children.push(child);
+    };
+    this.haveBaby = function(childName){
+        if (!this.isAlive){
+            throw new Error('Your pet is no longer alive :(')
+        }
+        this.children.push(new Pet(childName));
+    }
 }
 
 module.exports = Pet;
