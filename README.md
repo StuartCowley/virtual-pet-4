@@ -31,4 +31,5 @@ rex.adoptChild(matt); This will push matt into rex.children, meaning Rex has eff
 Remember that Rex's children will be stored in an array, which are "zero-indexed", which means that Rex's first child can be called with rex.children[0], his second with rex.children[1], his third with rex.children[2] and so on. Furthermore, to check the name/age/fitness etc of Rex's children, type for example rex.children[0].name
 
 rex.haveBaby('Amy');
+
 rex.children[0].name; //should say 'Amy'
