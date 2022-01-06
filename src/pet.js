@@ -6,17 +6,18 @@ const AGE_LIMIT = 30;
 const HUNGER_LIMIT = 10;
 const FITNESS_LIMIT = 0;
 
+Pet.prototype = {
+    get isAlive() {
+        return (this.age < AGE_LIMIT) && (this.hunger < HUNGER_LIMIT) && (this.fitness > FITNESS_LIMIT);
+    }
+};
+
 function Pet(name){
     this.name = name;
     this.age = 0;
     this.hunger = 0;
     this.fitness = 10;
     this.children = [];
-    Pet.prototype = {
-        get isAlive() {
-            return (this.age < AGE_LIMIT) && (this.hunger < HUNGER_LIMIT) && (this.fitness > FITNESS_LIMIT);
-        }
-    };
     this.growUp = function(){
         if (!this.isAlive){
             throw new Error('Your pet is no longer alive :(')

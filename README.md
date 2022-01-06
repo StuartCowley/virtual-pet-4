@@ -1,13 +1,29 @@
 This is a readme for the Virtual Pet Project as per the Software Engineer Fasttrack course at Manchester Codes.
 
-At this stage, the read-me will be very bare, but I will update in due time as I move through the project.
+As per the instructions provided on the platform, the pet function has been created allowing the user to create a pet by inputting what they want to name their pet when they call the function. When the function is called, a new pet will be created in the form of an object, with key-values pairs including name, age, hunger, fitness and an array containing any children your pet may have.
 
-From 16th December onwards, I will try to provide updates done on that day. Once I've finished, a more thorough read-me will be in place and I may move this to a journal-type file, but these updates should provide a better description of what's been done. One reason for this is the commit messages when committing to GitHub have to be rather brief.
+To get started, open node in your terminal and type the following:
 
-Updates 16Dec2021: Previously, the pet object was empty. Now it contains a name, an age and the growUp function, which ages the pet 1 year when called. A few tests have also been written, asking whether the pet is an object, and whether that object has a name and age and whether the growUp function actually increases the age.
+const Pet require('./src/pet');
 
-Updates 18Dec2021: Added fitness and hunger levels to the pet function, which also changes as a result of growUp(). Parameters are tested. Added walk() function, and ensured that fitness cannot pass above 10 when walk() is called. Added feed() function and ensured that hunger can't fall below 0 when feed() is called. Added a checkUp() function which checks the pet's fitness/hunger levels and changes the pet's mood accordingly.
+And then type, for example to create a new pet called "Rex":
 
-Update 21Dec2021: Function is more or less finished. Death conditions have been set, along with the growUp(), walk() and feed() functions throwing an error if the pet dies (ie. guard clauses).
+const rex = new Pet('Rex'); //where 'Rex' is your new pet's name
 
-Update 31Dec2021: Function now has the ability to either have or adopt a baby, which is a new pet. Unfortunately, the pet seems to think that it's dead from the off, and I have no idea why this is. So I'm going to pass it onto code review anyway and ask what they think.
+To check Rex's name, age, fitness, or hunger, type the following:
+
+rex.name, rex.age, rex.fitness, rex.hunger, respectively.
+
+By default, Rex's age is 0, his fitness is 10, his hunger is 0 and he has no children, so rex.children will return an empty array. Be aware: Rex will pass away if his age reaches 30, or his fitness falls to 0, or if his hunger reaches 10. The following functions can be called on Rex at any time:
+
+rex.growUp(); This will increase Rex's age by 1, but will also increase his hunger by 5 and decrease his fitness by 3.
+rex.walk(); This will increase Rex's fitness by 4, and be capped at 10.
+rex.feed(); This will decrease Rex's hunger by 3, and can't fall below 0.
+rex.checkUp(); This will look at Rex's age, fitness and hunger and return a message saying whether Rex needs feeding or walking (or both).
+rex.haveBaby('Amy'); This will create a new pet object within rex.children and name it 'Amy', for example, but you can name the child whatever you want.
+rex.adoptChild(matt); This will push matt into rex.children, meaning Rex has effectively adopted Matt as his child. Make sure that matt has already been created (const matt = new Pet('Matt')) before you do this. You can't push Matt into rex.children if he doesn't exist yet. This is an alternative way of allowing Rex to have a child.
+
+Remember that Rex's children will be stored in an array, which are "zero-indexed", which means that Rex's first child can be called with rex.children[0], his second with rex.children[1], his third with rex.children[2] and so on. Furthermore, to check the name/age/fitness etc of Rex's children, type for example rex.children[0].name
+
+rex.haveBaby('Amy');
+rex.children[0].name; //should say 'Amy'
