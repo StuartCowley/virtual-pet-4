@@ -17,10 +17,15 @@ rex.name, rex.age, rex.fitness, rex.hunger, respectively.
 By default, Rex's age is 0, his fitness is 10, his hunger is 0 and he has no children, so rex.children will return an empty array. Be aware: Rex will pass away if his age reaches 30, or his fitness falls to 0, or if his hunger reaches 10. The following functions can be called on Rex at any time:
 
 rex.growUp(); This will increase Rex's age by 1, but will also increase his hunger by 5 and decrease his fitness by 3.
+
 rex.walk(); This will increase Rex's fitness by 4, and be capped at 10.
+
 rex.feed(); This will decrease Rex's hunger by 3, and can't fall below 0.
+
 rex.checkUp(); This will look at Rex's age, fitness and hunger and return a message saying whether Rex needs feeding or walking (or both).
+
 rex.haveBaby('Amy'); This will create a new pet object within rex.children and name it 'Amy', for example, but you can name the child whatever you want.
+
 rex.adoptChild(matt); This will push matt into rex.children, meaning Rex has effectively adopted Matt as his child. Make sure that matt has already been created (const matt = new Pet('Matt')) before you do this. You can't push Matt into rex.children if he doesn't exist yet. This is an alternative way of allowing Rex to have a child.
 
 Remember that Rex's children will be stored in an array, which are "zero-indexed", which means that Rex's first child can be called with rex.children[0], his second with rex.children[1], his third with rex.children[2] and so on. Furthermore, to check the name/age/fitness etc of Rex's children, type for example rex.children[0].name
